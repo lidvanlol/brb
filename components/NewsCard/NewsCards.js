@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { StyleSheet, TouchableOpacity, SafeAreaView,Text, View } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
@@ -14,30 +14,31 @@ const NewsCards = ({
 
 	return (
 		<>
-			<Card style={styles.newsCards}>
-				<Card.Content>
-					<Title style={styles.title}>{title}</Title>
-					<Card.Cover style={styles.img} source={{ uri: urlToImage }} />
-					<Paragraph style={styles.description}>{description}</Paragraph>
-				</Card.Content>
-				<Card.Actions>
-					<View style={styles.right}>
-						<TouchableOpacity
-							style={styles.button}
-							onPress={() => {
-								
-								navigation.navigate("NewsDetails", {
-									urlToImage,
-									content,
-									title,
-								});
-							}}
-						>
-							<Text style={styles.more}>More</Text>
-						</TouchableOpacity>
-					</View>
-				</Card.Actions>
-			</Card>
+			<SafeAreaView>
+				<Card style={styles.newsCards}>
+					<Card.Content>
+						<Title style={styles.title}>{title}</Title>
+						<Card.Cover style={styles.img} source={{ uri: urlToImage }} />
+						<Paragraph style={styles.description}>{description}</Paragraph>
+					</Card.Content>
+					<Card.Actions>
+						<View style={styles.right}>
+							<TouchableOpacity
+								style={styles.button}
+								onPress={() => {
+									navigation.navigate("NewsDetails", {
+										urlToImage,
+										content,
+										title,
+									});
+								}}
+							>
+								<Text style={styles.more}>More</Text>
+							</TouchableOpacity>
+						</View>
+					</Card.Actions>
+				</Card>
+			</SafeAreaView>
 		</>
 	);
 };

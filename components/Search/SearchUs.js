@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
 	StyleSheet,
 	StatusBar,
+	SafeAreaView,
 	Text,
 	View,
 	FlatList,
@@ -47,7 +48,7 @@ const searchUs = () => {
 	);
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
 			<Appbar style={styles.appbar}>
 				<Appbar.BackAction onPress={() => navigation.goBack()} />
@@ -74,7 +75,7 @@ const searchUs = () => {
 				placeholder="Search"
 				value={searchValue}
 				onChange={(e) => setSearchValue(e.target.value)}
-				onSubmitEditing={searchHandler}
+				onChangeText={searchHandler}
 				placeholderTextColor={"#888888"}
 				style={styles.search}
 			/>
@@ -90,7 +91,7 @@ const searchUs = () => {
 			) : (
 				errorMessage && <Text style={styles.errMsg}>Error: {errorMessage}</Text>
 			)}
-		</View>
+		</SafeAreaView>
 	);
 };
 

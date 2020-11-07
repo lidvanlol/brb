@@ -1,16 +1,18 @@
 import React from "react";
-import { StyleSheet, Image, View, Text, ScrollView } from "react-native";
+import { StyleSheet, Image, View, Text, ScrollView,SafeAreaView } from "react-native";
 
 function NewsDetails({ route }) {
 	const { content, title, urlToImage } = route.params;
 	return (
-		<ScrollView>
-			<View style={{ flex: 1 }}>
-				<Text style={styles.title}>{title}</Text>
-				<Image style={styles.image} source={{ uri: urlToImage }} />
-				<Text style={styles.content}>{content}</Text>
-			</View>
-		</ScrollView>
+		<SafeAreaView>
+			<ScrollView>
+				<View style={{ flex: 1 }}>
+					<Text style={styles.title}>{title}</Text>
+					<Image style={styles.image} source={{ uri: urlToImage }} />
+					<Text style={styles.content}>{content}</Text>
+				</View>
+			</ScrollView>
+		</SafeAreaView>
 	);
 }
 

@@ -1,17 +1,17 @@
 import * as React from "react";
 import {
-	
 	View,
 	Text,
 	StyleSheet,
 	StatusBar,
 	TouchableOpacity,
+	SafeAreaView,
 } from "react-native";
 import Colors from "../constants/Colors";
 import { Appbar } from "react-native-paper";
 function Home({ navigation }) {
 	return (
-		<View>
+		<SafeAreaView>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
 
 			<View style={styles.container}>
@@ -41,7 +41,7 @@ function Home({ navigation }) {
 					<Text style={styles.text}> News App</Text>
 				</View>
 			</View>
-		</View>
+		</SafeAreaView>
 	);
 }
 

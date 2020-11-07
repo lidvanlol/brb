@@ -10,6 +10,7 @@ import {
 	FlatList,
 	Button,
 	ScrollView,
+	SafeAreaView,
 	TouchableOpacity,
 } from "react-native";
 
@@ -46,30 +47,32 @@ function generalUs() {
 		const navigation = useNavigation();
 		return (
 			<>
-				<Card style={styles.newsCards}>
-					<Card.Content>
-						<Title style={styles.title}>{title}</Title>
-						<Card.Cover style={styles.img} source={{ uri: urlToImage }} />
-						<Paragraph style={styles.description}>{description}</Paragraph>
-					</Card.Content>
-					<Card.Actions>
-						<View style={styles.right}>
-							<TouchableOpacity
-								style={styles.button}
-								onPress={() => {
-									/* 1. Navigate to the Details route with params */
-									navigation.navigate("NewsDetails", {
-										urlToImage,
-										content,
-										title,
-									});
-								}}
-							>
-								<Text style={styles.more}>More</Text>
-							</TouchableOpacity>
-						</View>
-					</Card.Actions>
-				</Card>
+				<SafeAreaView>
+					<Card style={styles.newsCards}>
+						<Card.Content>
+							<Title style={styles.title}>{title}</Title>
+							<Card.Cover style={styles.img} source={{ uri: urlToImage }} />
+							<Paragraph style={styles.description}>{description}</Paragraph>
+						</Card.Content>
+						<Card.Actions>
+							<View style={styles.right}>
+								<TouchableOpacity
+									style={styles.button}
+									onPress={() => {
+										/* 1. Navigate to the Details route with params */
+										navigation.navigate("NewsDetails", {
+											urlToImage,
+											content,
+											title,
+										});
+									}}
+								>
+									<Text style={styles.more}>More</Text>
+								</TouchableOpacity>
+							</View>
+						</Card.Actions>
+					</Card>
+				</SafeAreaView>
 			</>
 		);
 	};

@@ -5,6 +5,7 @@ import {
 	Text,
 	View,
 	FlatList,
+	SafeAreaView,
 	Button,
 } from "react-native";
 import NewsCards from "../NewsCard/NewsCards";
@@ -47,7 +48,7 @@ const mainGb = () => {
 	);
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
 			<Appbar>
 				<Appbar.BackAction onPress={() => navigation.goBack()} />
@@ -82,7 +83,7 @@ const mainGb = () => {
 			) : (
 				errorMessage && <Text style={styles.errMsg}>Error: {errorMessage}</Text>
 			)}
-		</View>
+		</SafeAreaView>
 	);
 };
 

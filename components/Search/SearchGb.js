@@ -4,7 +4,8 @@ import {
 	StatusBar,
 	Text,
 	View,
-	FlatList,
+    FlatList,
+    SafeAreaView,
 	Button,
 } from "react-native";
 import NewsCards from "../NewsCard/NewsCards";
@@ -47,7 +48,7 @@ const searchGb = () => {
 	);
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
 			<Appbar style={styles.appbar}>
 				<Appbar.BackAction onPress={() => navigation.goBack()} />
@@ -90,7 +91,7 @@ const searchGb = () => {
 			) : (
 				errorMessage && <Text style={styles.errMsg}>Error: {errorMessage}</Text>
 			)}
-		</View>
+		</SafeAreaView>
 	);
 };
 
