@@ -21,11 +21,28 @@ function Categories() {
 	const [newsDataGen, setNewsDataGen] = useState();
 	const [newsDataHel, setNewsDataHel] = useState();
 	const [newsDataSci, setNewsDataSci] = useState();
-
+	const [category, setCategory] = useState();
 	const [newsDataTech, setNewsDataTech] = useState();
 
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
+
+	const loadA = async () => {
+		try {
+			const getCat = `http://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
+
+			const response = await fetch(getCat);
+			const responseJson = await response.json();
+
+			if (response.ok) {
+				setCategory(responseJson.articles);
+			} else setErrorMessage(responseJson.message);
+		} catch (error) {
+			console.log("Error", error);
+			setErrorMessage(error.message);
+		}
+	};
+
 	const load = async () => {
 		try {
 			const newsApientertaiment = `http://newsapi.org/v2/top-headlines?country=us&category=entertainment&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
@@ -105,7 +122,9 @@ function Categories() {
 			setErrorMessage(error.message);
 		}
 	};
-
+	useEffect(() => {
+		loadA();
+	}, []);
 	useEffect(() => {
 		load();
 		load2();
@@ -113,13 +132,7 @@ function Categories() {
 		load4();
 		load5();
 	}, []);
-	const NewsCards = ({
-		title,
-		description,
-		urlToImage,
-
-		content,
-	}) => {
+	const NewsCards = ({ title, description, urlToImage, content }) => {
 		const navigation = useNavigation();
 		return (
 			<>
@@ -156,7 +169,6 @@ function Categories() {
 			description={item.description}
 			urlToImage={item.urlToImage}
 			content={item.content}
-			style={{ width: 100 }}
 		/>
 	);
 
@@ -185,9 +197,16 @@ function Categories() {
 				</View>
 			</Appbar>
 			<ScrollView>
-				<Text style={styles.header}>Top News Us</Text>
-
-				<Text style={styles.categoryTitle}>Top News for entertainment</Text>
+				<Text style={styles.header}>Top News for Categories in Us</Text>
+				
+				<TouchableOpacity
+					onPress={() => {
+						/* 1. Navigate to the Details route with params */
+						navigation.navigate("entertaimentUS");
+					}}
+				>
+					<Text style={styles.categoryTitle}>Top News for entertainment</Text>
+				</TouchableOpacity>
 				{newsDataEnt ? (
 					<FlatList
 						horizontal
@@ -201,7 +220,14 @@ function Categories() {
 						<Text style={styles.errMsg}>Error: {errorMessage}</Text>
 					)
 				)}
-				<Text style={styles.categoryTitle}>Top News for general</Text>
+				<TouchableOpacity
+					onPress={() => {
+						/* 1. Navigate to the Details route with params */
+						navigation.navigate("generalUs");
+					}}
+				>
+					<Text style={styles.categoryTitle}>Top News for general</Text>
+				</TouchableOpacity>
 				{newsDataGen ? (
 					<FlatList
 						horizontal
@@ -214,7 +240,14 @@ function Categories() {
 						<Text style={styles.errMsg}>Error: {errorMessage}</Text>
 					)
 				)}
-				<Text style={styles.categoryTitle}>Top News for Health</Text>
+				<TouchableOpacity
+					onPress={() => {
+						/* 1. Navigate to the Details route with params */
+						navigation.navigate("healthUs");
+					}}
+				>
+					<Text style={styles.categoryTitle}>Top News for Health</Text>
+				</TouchableOpacity>
 				{newsDataHel ? (
 					<FlatList
 						horizontal
@@ -227,7 +260,9 @@ function Categories() {
 						<Text style={styles.errMsg}>Error: {errorMessage}</Text>
 					)
 				)}
-				<Text style={styles.categoryTitle}>Top News for Science</Text>
+				<TouchableOpacity onPress={() => navigation.navigate("scienceUs")}>
+					<Text style={styles.categoryTitle}>Top News for Science</Text>
+				</TouchableOpacity>
 				{newsDataSci ? (
 					<FlatList
 						horizontal
@@ -240,7 +275,9 @@ function Categories() {
 						<Text style={styles.errMsg}>Error: {errorMessage}</Text>
 					)
 				)}
-				<Text style={styles.categoryTitle}>Top News for Technology</Text>
+				<TouchableOpacity onPress={() => navigation.navigate("techUs")}>
+					<Text style={styles.categoryTitle}>Top News for Technology</Text>
+				</TouchableOpacity>
 				{newsDataTech ? (
 					<FlatList
 						horizontal

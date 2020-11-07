@@ -70,8 +70,8 @@ const main = () => {
 					></Button>
 				</View>
 			</Appbar>
-			<View style={styles.header}>
-				<Text>Top News from Us</Text>
+			<View>
+				<Text style={styles.header}>Top News Us</Text>
 			</View>
 			{newsData ? (
 				<FlatList
@@ -114,6 +114,15 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		right: 10,
 		flexDirection: "row",
+	},
+	header: {
+		color: "white",
+		alignItems: "center",
+		fontWeight: "bold",
+		textAlign: "center",
+		marginTop: 20,
+		marginBottom: 20,
+		fontSize: 30,
 	},
 });
 

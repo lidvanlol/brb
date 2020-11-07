@@ -38,25 +38,6 @@ const search = () => {
 		searchHandler();
 	}, []);
 
-	// const load = async () => {
-	// 	try {
-	// 		const newsApi = `http://newsapi.org/v2/top-headlines?country=us&apiKey=${Env.NEWS_API_KEY}`;
-	// 		const response = await fetch(newsApi);
-	// 		const responseJson = await response.json();
-
-	// 		if (response.ok) {
-	// 			setNewsData(responseJson.articles);
-	// 		} else setErrorMessage(responseJson.message);
-	// 	} catch (error) {
-	// 		console.log("Error", error);
-	// 		setErrorMessage(error.message);
-	// 	}
-	// };
-
-	// useEffect(() => {
-	// 	load();
-	// }, []);
-
 	const renderItem = ({ item }) => (
 		<NewsCards
 			title={item.title}
@@ -77,7 +58,7 @@ const search = () => {
 						title="us"
 						style={styles.topBtn}
 						onPress={() => {
-							navigation.navigate("main");
+							navigation.navigate("Searcg");
 						}}
 					/>
 
@@ -92,13 +73,13 @@ const search = () => {
 			</Appbar>
 			<TextInput
 				placeholder="Search"
-				onChange={setSearchValue}
-				onSubmitEditing={searchHandler}
+				onChange={(e) => setSearchValue(e.target.value)}
+				onChangeText={searchHandler}
 				placeholderTextColor={"#888888"}
 				style={styles.search}
 			/>
 
-			<Text style={styles.title}>Search Top News In ... by Term</Text>
+			<Text style={styles.title}>Search Top News In Us by Term</Text>
 
 			{searchResults ? (
 				<FlatList

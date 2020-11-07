@@ -8,7 +8,7 @@ function NewsDetails({ route }) {
 			<View style={{ flex: 1 }}>
 				<Text style={styles.title}>{title}</Text>
 				<Image style={styles.image} source={{ uri: urlToImage }} />
-				<Text style={styles.content}>{content.slice(0, 200)}</Text>
+				<Text style={styles.content}>{content}</Text>
 			</View>
 		</ScrollView>
 	);

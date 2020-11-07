@@ -9,6 +9,16 @@ import Home from "./components/Home";
 import Search from "./components/Search";
 import Categories from "./components/Categories";
 import CategoriesGb from "./components/CategoriesGb";
+import entertaimentUS from "./components/uscat/entertaiment";
+import generalUs from "./components/uscat/general";
+import healthUs from "./components/uscat/health";
+import scienceUs from "./components/uscat/science";
+import techUs from "./components/uscat/technology";
+import entertaimentGb from "./components/gbcat/entertaiment";
+import generalGb from "./components/gbcat/general";
+import healthGb from "./components/gbcat/health";
+import scienceGb from "./components/gbcat/science";
+import techGb from "./components/gbcat/technology";
 const Stack = createStackNavigator();
 
 function App() {
@@ -44,6 +54,56 @@ function App() {
 				<Stack.Screen
 					name="Search"
 					component={Search}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="entertaimentUS"
+					component={entertaimentUS}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="generalUs"
+					component={generalUs}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="healthUs"
+					component={healthUs}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="scienceUs"
+					component={scienceUs}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="techUs"
+					component={techUs}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="entertaimentGb"
+					component={entertaimentGb}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="techGb"
+					component={techGb}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="scienceGb"
+					component={scienceGb}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="healthGb"
+					component={healthGb}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="genGb"
+					component={generalGb}
 					options={{ headerShown: false }}
 				/>
 			</Stack.Navigator>

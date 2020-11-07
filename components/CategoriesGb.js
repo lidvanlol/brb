@@ -26,6 +26,7 @@ function CategoriesGb() {
 
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
+
 	const load = async () => {
 		try {
 			const newsApientertaiment = `http://newsapi.org/v2/top-headlines?country=gb&category=entertainment&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
@@ -113,13 +114,7 @@ function CategoriesGb() {
 		load4();
 		load5();
 	}, []);
-	const NewsCards = ({
-		title,
-		description,
-		urlToImage,
-
-		content,
-	}) => {
+	const NewsCards = ({ title, description, urlToImage, content }) => {
 		const navigation = useNavigation();
 		return (
 			<>
@@ -163,7 +158,7 @@ function CategoriesGb() {
 		<View style={styles.container}>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
 			<Appbar style={styles.appbar}>
-				<Appbar.BackAction onPress={() => navigation.goBack()} />
+				<Appbar.BackAction onPress={() => navigation.goBack("main")} />
 
 				<View style={styles.right}>
 					<Button
@@ -184,9 +179,16 @@ function CategoriesGb() {
 				</View>
 			</Appbar>
 			<ScrollView>
-				<Text style={styles.header}>Top News Gb</Text>
+				<Text style={styles.header}>Top News for Categories in Gb</Text>
 
-				<Text style={styles.categoryTitle}>Top News for entertainment</Text>
+				<TouchableOpacity
+					onPress={() => {
+						/* 1. Navigate to the Details route with params */
+						navigation.navigate("entertaimentGb");
+					}}
+				>
+					<Text style={styles.categoryTitle}>Top News for entertainment</Text>
+				</TouchableOpacity>
 				{newsDataEnt ? (
 					<FlatList
 						horizontal
@@ -200,7 +202,14 @@ function CategoriesGb() {
 						<Text style={styles.errMsg}>Error: {errorMessage}</Text>
 					)
 				)}
-				<Text style={styles.categoryTitle}>Top News for general</Text>
+				<TouchableOpacity
+					onPress={() => {
+						/* 1. Navigate to the Details route with params */
+						navigation.navigate("genGb");
+					}}
+				>
+					<Text style={styles.categoryTitle}>Top News for general</Text>
+				</TouchableOpacity>
 				{newsDataGen ? (
 					<FlatList
 						horizontal
@@ -213,7 +222,14 @@ function CategoriesGb() {
 						<Text style={styles.errMsg}>Error: {errorMessage}</Text>
 					)
 				)}
-				<Text style={styles.categoryTitle}>Top News for Health</Text>
+				<TouchableOpacity
+					onPress={() => {
+						/* 1. Navigate to the Details route with params */
+						navigation.navigate("healthGb");
+					}}
+				>
+					<Text style={styles.categoryTitle}>Top News for Health</Text>
+				</TouchableOpacity>
 				{newsDataHel ? (
 					<FlatList
 						horizontal
@@ -226,7 +242,9 @@ function CategoriesGb() {
 						<Text style={styles.errMsg}>Error: {errorMessage}</Text>
 					)
 				)}
-				<Text style={styles.categoryTitle}>Top News for Science</Text>
+				<TouchableOpacity onPress={() => navigation.navigate("scienceGb")}>
+					<Text style={styles.categoryTitle}>Top News for Science</Text>
+				</TouchableOpacity>
 				{newsDataSci ? (
 					<FlatList
 						horizontal
@@ -239,7 +257,9 @@ function CategoriesGb() {
 						<Text style={styles.errMsg}>Error: {errorMessage}</Text>
 					)
 				)}
-				<Text style={styles.categoryTitle}>Top News for Technology</Text>
+				<TouchableOpacity onPress={() => navigation.navigate("techGb")}>
+					<Text style={styles.categoryTitle}>Top News for Technology</Text>
+				</TouchableOpacity>
 				{newsDataTech ? (
 					<FlatList
 						horizontal
