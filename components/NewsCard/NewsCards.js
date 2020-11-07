@@ -25,7 +25,7 @@ const NewsCards = ({
 						<TouchableOpacity
 							style={styles.button}
 							onPress={() => {
-								/* 1. Navigate to the Details route with params */
+								
 								navigation.navigate("NewsDetails", {
 									urlToImage,
 									content,

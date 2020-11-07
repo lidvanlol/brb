@@ -12,8 +12,8 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import Colors from "../../constants/Colors";
-import Env from "../../constants/Env";
+import Colors from "../../../constants/Colors";
+import Env from "../../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
 function healthUs() {

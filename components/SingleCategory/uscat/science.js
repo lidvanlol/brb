@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, Title, Paragraph } from "react-native-paper";
 ("react-native");
@@ -13,25 +12,25 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import Colors from "../../constants/Colors";
-import Env from "../../constants/Env";
+import Colors from "../../../constants/Colors";
+import Env from "../../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
-function generalUs() {
-	const [newsDataGen, setNewsDataGen] = useState();
+function scienceUs() {
+	const [newsDataSci, setNewsDataSci] = useState();
 
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
 
 	const load = async () => {
 		try {
-			const newsApiGen = `http://newsapi.org/v2/top-headlines?country=us&category=general&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
+			const newsApiSci = `http://newsapi.org/v2/top-headlines?country=us&category=science&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
 
-			const response = await fetch(newsApiGen);
+			const response = await fetch(newsApiSci);
 			const responseJson = await response.json();
 
 			if (response.ok) {
-				setNewsDataGen(responseJson.articles);
+				setNewsDataSci(responseJson.articles);
 			} else setErrorMessage(responseJson.message);
 		} catch (error) {
 			console.log("Error", error);
@@ -93,7 +92,7 @@ function generalUs() {
 						style={styles.lng}
 						title="us"
 						onPress={() => {
-							navigation.navigate("generalUs");
+							navigation.navigate("scienceUs");
 						}}
 					/>
 
@@ -101,16 +100,16 @@ function generalUs() {
 						style={styles.lng}
 						title="gb"
 						onPress={() => {
-							navigation.navigate("generalGb");
+							navigation.navigate("scienceGb");
 						}}
 					></Button>
 				</View>
 			</Appbar>
 			<ScrollView>
-				<Text style={styles.header}>Top News General in US</Text>
-				{newsDataGen ? (
+				<Text style={styles.header}>Top News Science in US</Text>
+				{newsDataSci ? (
 					<FlatList
-						data={newsDataGen}
+						data={newsDataSci}
 						renderItem={renderItem}
 						keyExtractor={(item) => item.publishedAt}
 						style={styles.flatList}
@@ -208,4 +207,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default generalUs;
+export default scienceUs;

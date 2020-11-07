@@ -12,11 +12,11 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import Colors from "../constants/Colors";
-import Env from "../constants/Env";
+import Colors from "../../constants/Colors";
+import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
-function Categories() {
+function CategoriesUs() {
 	const [newsDataEnt, setNewsDataEnt] = useState();
 	const [newsDataGen, setNewsDataGen] = useState();
 	const [newsDataHel, setNewsDataHel] = useState();
@@ -26,22 +26,6 @@ function Categories() {
 
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
-
-	const loadA = async () => {
-		try {
-			const getCat = `http://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
-
-			const response = await fetch(getCat);
-			const responseJson = await response.json();
-
-			if (response.ok) {
-				setCategory(responseJson.articles);
-			} else setErrorMessage(responseJson.message);
-		} catch (error) {
-			console.log("Error", error);
-			setErrorMessage(error.message);
-		}
-	};
 
 	const load = async () => {
 		try {
@@ -122,9 +106,7 @@ function Categories() {
 			setErrorMessage(error.message);
 		}
 	};
-	useEffect(() => {
-		loadA();
-	}, []);
+
 	useEffect(() => {
 		load();
 		load2();
@@ -198,7 +180,7 @@ function Categories() {
 			</Appbar>
 			<ScrollView>
 				<Text style={styles.header}>Top News for Categories in Us</Text>
-				
+
 				<TouchableOpacity
 					onPress={() => {
 						/* 1. Navigate to the Details route with params */
@@ -378,4 +360,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Categories;
+export default CategoriesUs;

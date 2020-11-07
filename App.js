@@ -2,23 +2,24 @@ import React from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import NewsDetails from "./components/NewsDetails";
-import main from "./components/TopNews";
-import mainGB from "./components/TopNewsGb";
+import NewsDetails from "./components/NewsCard/NewsDetails";
+import TopNewsUs from "./components/TopNews/TopNewsUs";
+import TopNewsGb from "./components/TopNews/TopNewsGb";
 import Home from "./components/Home";
-import Search from "./components/Search";
-import Categories from "./components/Categories";
-import CategoriesGb from "./components/CategoriesGb";
-import entertaimentUS from "./components/uscat/entertaiment";
-import generalUs from "./components/uscat/general";
-import healthUs from "./components/uscat/health";
-import scienceUs from "./components/uscat/science";
-import techUs from "./components/uscat/technology";
-import entertaimentGb from "./components/gbcat/entertaiment";
-import generalGb from "./components/gbcat/general";
-import healthGb from "./components/gbcat/health";
-import scienceGb from "./components/gbcat/science";
-import techGb from "./components/gbcat/technology";
+import SearchUs from "./components/Search/SearchUs";
+import SearchGb from "./components/Search/SearchGb";
+import CategoriesUs from "./components/Category/CategoriesUs";
+import CategoriesGb from "./components/Category/CategoriesGb";
+import entertaimentUS from "./components/SingleCategory/uscat/entertaiment";
+import generalUs from "./components/SingleCategory/uscat/general";
+import healthUs from "./components/SingleCategory/uscat/health";
+import scienceUs from "./components/SingleCategory/uscat/science";
+import techUs from "./components/SingleCategory/uscat/technology";
+import entertaimentGb from "./components/SingleCategory/gbcat/entertaiment";
+import generalGb from "./components/SingleCategory/gbcat/general";
+import healthGb from "./components/SingleCategory/gbcat/health";
+import scienceGb from "./components/SingleCategory/gbcat/science";
+import techGb from "./components/SingleCategory/gbcat/technology";
 const Stack = createStackNavigator();
 
 function App() {
@@ -31,18 +32,18 @@ function App() {
 					options={{ headerShown: false }}
 				/>
 				<Stack.Screen
-					name="main"
-					component={main}
+					name="TopNewsUs"
+					component={TopNewsUs}
 					options={{ headerShown: false }}
 				/>
 				<Stack.Screen
-					name="mainGB"
-					component={mainGB}
+					name="TopNewsGb"
+					component={TopNewsGb}
 					options={{ headerShown: false }}
 				/>
 				<Stack.Screen
-					name="Categories"
-					component={Categories}
+					name="CategoriesUs"
+					component={CategoriesUs}
 					options={{ headerShown: false }}
 				/>
 				<Stack.Screen
@@ -52,8 +53,13 @@ function App() {
 				/>
 				<Stack.Screen name="NewsDetails" component={NewsDetails} />
 				<Stack.Screen
-					name="Search"
-					component={Search}
+					name="SearchUs"
+					component={SearchUs}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="SearchGb"
+					component={SearchGb}
 					options={{ headerShown: false }}
 				/>
 				<Stack.Screen

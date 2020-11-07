@@ -12,11 +12,11 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import Colors from "../../constants/Colors";
-import Env from "../../constants/Env";
+import Colors from "../../../constants/Colors";
+import Env from "../../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
-function techGb() {
+function techUs() {
 	const [newsDataTech, setNewsDataTech] = useState();
 
 	const [errorMessage, setErrorMessage] = useState();
@@ -24,7 +24,7 @@ function techGb() {
 
 	const load = async () => {
 		try {
-			const newsApiTech = `http://newsapi.org/v2/top-headlines?country=gb&category=technology&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
+			const newsApiTech = `http://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
 
 			const response = await fetch(newsApiTech);
 			const responseJson = await response.json();
@@ -106,7 +106,7 @@ function techGb() {
 				</View>
 			</Appbar>
 			<ScrollView>
-				<Text style={styles.header}>Top News Technology in Gb</Text>
+				<Text style={styles.header}>Top News Technology in US</Text>
 				{newsDataTech ? (
 					<FlatList
 						data={newsDataTech}
@@ -207,4 +207,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default techGb;
+export default techUs;

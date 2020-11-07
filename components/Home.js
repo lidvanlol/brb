@@ -1,5 +1,12 @@
 import * as React from "react";
-import { Button, View, Text, StyleSheet, StatusBar } from "react-native";
+import {
+	
+	View,
+	Text,
+	StyleSheet,
+	StatusBar,
+	TouchableOpacity,
+} from "react-native";
 import Colors from "../constants/Colors";
 import { Appbar } from "react-native-paper";
 function Home({ navigation }) {
@@ -9,20 +16,26 @@ function Home({ navigation }) {
 
 			<View style={styles.container}>
 				<Appbar style={styles.appbar}>
-					<Button
+					<TouchableOpacity
+						style={styles.nav}
 						title="Top News"
-						onPress={() => navigation.navigate("main")}
-					/>
-					<Button
-						style={styles.top}
+						onPress={() => navigation.navigate("TopNewsUs")}
+					>
+						<Text style={{ color: "#ffffff" }}>Top News</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.nav}
 						title="Categories"
-						onPress={() => navigation.navigate("Categories")}
-					/>
-					<Button
-						title="Search"
-						style={styles.top}
-						onPress={() => navigation.navigate("Search")}
-					/>
+						onPress={() => navigation.navigate("CategoriesUs")}
+					>
+						<Text style={{ color: "#ffffff" }}>Category</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.nav}
+						onPress={() => navigation.navigate("SearchUs")}
+					>
+						<Text style={{ color: "#ffffff" }}>Search</Text>
+					</TouchableOpacity>
 				</Appbar>
 				<View style={styles.center}>
 					<Text style={styles.text}> News App</Text>
@@ -35,6 +48,19 @@ function Home({ navigation }) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	nav: {
+		backgroundColor: "#33BDFF",
+
+		width: 80,
+		height: 30,
+		textAlign: "center",
+		justifyContent: "center",
+		margin: 10,
+		alignContent: "center",
+		alignItems: "center",
+		textTransform: "uppercase",
+		fontSize: 18,
 	},
 
 	errMsg: {

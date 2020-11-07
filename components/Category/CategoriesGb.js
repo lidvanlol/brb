@@ -12,8 +12,8 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import Colors from "../constants/Colors";
-import Env from "../constants/Env";
+import Colors from "../../constants/Colors";
+import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
 function CategoriesGb() {
@@ -158,14 +158,14 @@ function CategoriesGb() {
 		<View style={styles.container}>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
 			<Appbar style={styles.appbar}>
-				<Appbar.BackAction onPress={() => navigation.goBack("main")} />
+				<Appbar.BackAction onPress={() => navigation.goBack("TopNewsGb")} />
 
 				<View style={styles.right}>
 					<Button
 						style={styles.lng}
 						title="us"
 						onPress={() => {
-							navigation.navigate("Categories");
+							navigation.navigate("CategoriesUs");
 						}}
 					/>
 

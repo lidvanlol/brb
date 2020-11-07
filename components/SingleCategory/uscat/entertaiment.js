@@ -12,11 +12,11 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import Colors from "../../constants/Colors";
-import Env from "../../constants/Env";
+import Colors from "../../../constants/Colors";
+import Env from "../../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
-function entertaimentGb() {
+function entertaimentUS() {
 	const [newsDataEnt, setNewsDataEnt] = useState();
 
 	const [errorMessage, setErrorMessage] = useState();
@@ -24,7 +24,7 @@ function entertaimentGb() {
 
 	const load = async () => {
 		try {
-			const newsApientertaiment = `http://newsapi.org/v2/top-headlines?country=gb&category=entertainment&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
+			const newsApientertaiment = `http://newsapi.org/v2/top-headlines?country=us&category=entertainment&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
 
 			const response = await fetch(newsApientertaiment);
 			const responseJson = await response.json();
@@ -92,7 +92,7 @@ function entertaimentGb() {
 						style={styles.lng}
 						title="us"
 						onPress={() => {
-							navigation.navigate("entertaimentUS");
+							navigation.navigate("entertaimentUs");
 						}}
 					/>
 
@@ -106,7 +106,7 @@ function entertaimentGb() {
 				</View>
 			</Appbar>
 			<ScrollView>
-				<Text style={styles.header}>Top News Entertaiment in Gb</Text>
+				<Text style={styles.header}>Top News Entertaiment in US</Text>
 				{newsDataEnt ? (
 					<FlatList
 						data={newsDataEnt}
@@ -207,4 +207,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default entertaimentGb;
+export default entertaimentUS;

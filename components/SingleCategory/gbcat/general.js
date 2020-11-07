@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, Title, Paragraph } from "react-native-paper";
 ("react-native");
@@ -12,25 +13,25 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import Colors from "../../constants/Colors";
-import Env from "../../constants/Env";
+import Colors from "../../../constants/Colors";
+import Env from "../../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
-function healthGb() {
-	const [newsDataHel, setNewsDataHel] = useState();
+function generalGb() {
+	const [newsDataGen, setNewsDataGen] = useState();
 
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
 
 	const load = async () => {
 		try {
-			const newsApiHel = `http://newsapi.org/v2/top-headlines?country=gb&category=health&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
+			const newsApiGen = `http://newsapi.org/v2/top-headlines?country=gb&category=general&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
 
-			const response = await fetch(newsApiHel);
+			const response = await fetch(newsApiGen);
 			const responseJson = await response.json();
 
 			if (response.ok) {
-				setNewsDataHel(responseJson.articles);
+				setNewsDataGen(responseJson.articles);
 			} else setErrorMessage(responseJson.message);
 		} catch (error) {
 			console.log("Error", error);
@@ -92,7 +93,7 @@ function healthGb() {
 						style={styles.lng}
 						title="us"
 						onPress={() => {
-							navigation.navigate("healthUs");
+							navigation.navigate("generalUs");
 						}}
 					/>
 
@@ -100,16 +101,16 @@ function healthGb() {
 						style={styles.lng}
 						title="gb"
 						onPress={() => {
-							navigation.navigate("healthGb");
+							navigation.navigate("generalGb");
 						}}
 					></Button>
 				</View>
 			</Appbar>
 			<ScrollView>
-				<Text style={styles.header}>Top News Health in Gb</Text>
-				{newsDataHel ? (
+				<Text style={styles.header}>Top News General in Gb</Text>
+				{newsDataGen ? (
 					<FlatList
-						data={newsDataHel}
+						data={newsDataGen}
 						renderItem={renderItem}
 						keyExtractor={(item) => item.publishedAt}
 						style={styles.flatList}
@@ -207,4 +208,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default healthGb;
+export default generalGb;

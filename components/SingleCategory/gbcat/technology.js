@@ -12,25 +12,25 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import Colors from "../../constants/Colors";
-import Env from "../../constants/Env";
+import Colors from "../../../constants/Colors";
+import Env from "../../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
-function scienceUs() {
-	const [newsDataSci, setNewsDataSci] = useState();
+function techGb() {
+	const [newsDataTech, setNewsDataTech] = useState();
 
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
 
 	const load = async () => {
 		try {
-			const newsApiSci = `http://newsapi.org/v2/top-headlines?country=us&category=science&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
+			const newsApiTech = `http://newsapi.org/v2/top-headlines?country=gb&category=technology&pageSize=10&apiKey=${Env.NEWS_API_KEY}`;
 
-			const response = await fetch(newsApiSci);
+			const response = await fetch(newsApiTech);
 			const responseJson = await response.json();
 
 			if (response.ok) {
-				setNewsDataSci(responseJson.articles);
+				setNewsDataTech(responseJson.articles);
 			} else setErrorMessage(responseJson.message);
 		} catch (error) {
 			console.log("Error", error);
@@ -92,7 +92,7 @@ function scienceUs() {
 						style={styles.lng}
 						title="us"
 						onPress={() => {
-							navigation.navigate("scienceUs");
+							navigation.navigate("techUs");
 						}}
 					/>
 
@@ -100,16 +100,16 @@ function scienceUs() {
 						style={styles.lng}
 						title="gb"
 						onPress={() => {
-							navigation.navigate("scienceGb");
+							navigation.navigate("techGb");
 						}}
 					></Button>
 				</View>
 			</Appbar>
 			<ScrollView>
-				<Text style={styles.header}>Top News Science in US</Text>
-				{newsDataSci ? (
+				<Text style={styles.header}>Top News Technology in Gb</Text>
+				{newsDataTech ? (
 					<FlatList
-						data={newsDataSci}
+						data={newsDataTech}
 						renderItem={renderItem}
 						keyExtractor={(item) => item.publishedAt}
 						style={styles.flatList}
@@ -207,4 +207,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default scienceUs;
+export default techGb;

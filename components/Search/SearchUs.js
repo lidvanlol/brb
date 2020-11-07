@@ -7,25 +7,25 @@ import {
 	FlatList,
 	Button,
 } from "react-native";
-import NewsCards from "./NewsCards";
-import Colors from "../constants/Colors";
-import Env from "../constants/Env";
+import NewsCards from "../NewsCard/NewsCards";
+import Colors from "../../constants/Colors";
+import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
-import { Appbar } from "react-native-paper";
+import { Appbar, TextInput } from "react-native-paper";
 
-const main = () => {
-	const [newsData, setNewsData] = useState();
+const searchUs = () => {
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
+	const [searchValue, setSearchValue] = useState("");
+	const [searchResults, setSearchResults] = useState([]);
 
-	const load = async () => {
+	const searchHandler = async () => {
 		try {
-			const newsApi = `http://newsapi.org/v2/top-headlines?country=us&apiKey=${Env.NEWS_API_KEY}`;
-			const response = await fetch(newsApi);
+			const search = `http://newsapi.org/v2/top-headlines?country=us&q=${searchValue}&apiKey=${Env.NEWS_API_KEY}`;
+			const response = await fetch(search);
 			const responseJson = await response.json();
-
 			if (response.ok) {
-				setNewsData(responseJson.articles);
+				setSearchResults(responseJson.articles);
 			} else setErrorMessage(responseJson.message);
 		} catch (error) {
 			console.log("Error", error);
@@ -34,7 +34,7 @@ const main = () => {
 	};
 
 	useEffect(() => {
-		load();
+		searchHandler();
 	}, []);
 
 	const renderItem = ({ item }) => (
@@ -49,33 +49,41 @@ const main = () => {
 	return (
 		<View style={styles.container}>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
-			<Appbar>
+			<Appbar style={styles.appbar}>
 				<Appbar.BackAction onPress={() => navigation.goBack()} />
 
 				<View style={styles.right}>
 					<Button
 						title="us"
+						style={styles.topBtn}
 						onPress={() => {
-							/* 1. Navigate to the Details route with params */
-							navigation.navigate("main");
+							navigation.navigate("SearchUs");
 						}}
 					/>
 
 					<Button
+						style={styles.topBtn}
 						title="gb"
 						onPress={() => {
-							/* 1. Navigate to the Details route with params */
-							navigation.navigate("mainGB");
+							navigation.navigate("SearchGb");
 						}}
 					></Button>
 				</View>
 			</Appbar>
-			<View>
-				<Text style={styles.header}>Top News Us</Text>
-			</View>
-			{newsData ? (
+			<TextInput
+				placeholder="Search"
+				value={searchValue}
+				onChange={(e) => setSearchValue(e.target.value)}
+				onSubmitEditing={searchHandler}
+				placeholderTextColor={"#888888"}
+				style={styles.search}
+			/>
+
+			<Text style={styles.title}>Search Top News In Us by Term</Text>
+
+			{searchResults ? (
 				<FlatList
-					data={newsData}
+					data={searchResults}
 					renderItem={renderItem}
 					keyExtractor={(item) => item.publishedAt}
 				/>
@@ -91,29 +99,20 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: Colors.primary,
 	},
-	header: {
-		height: 50,
-		backgroundColor: Colors.primary,
-		alignItems: "center",
-	},
 	title: {
-		fontSize: 28,
+		fontSize: 24,
+		fontWeight: "bold",
 		color: "white",
+		textAlign: "center",
+		marginTop: 20,
+		marginBottom: 20,
 	},
+
 	errMsg: {
 		fontSize: 18,
 		justifyContent: "center",
 		alignItems: "center",
 		color: "white",
-	},
-	appbar: {
-		position: "relative",
-		flexDirection: "row",
-	},
-	right: {
-		position: "absolute",
-		right: 10,
-		flexDirection: "row",
 	},
 	header: {
 		color: "white",
@@ -124,6 +123,32 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 		fontSize: 30,
 	},
+	search: {
+		width: "100%",
+		backgroundColor: "white",
+		height: 80,
+		padding: 10,
+		fontSize: 30,
+	},
+	appbar: {
+		display: "flex",
+		flexDirection: "row",
+	},
+
+	appbar: {
+		position: "relative",
+		flexDirection: "row",
+	},
+	right: {
+		position: "absolute",
+		right: 10,
+		flexDirection: "row",
+	},
+	rightButtons: {
+		alignSelf: "flex-end",
+		flex: 1,
+	},
+	topBtn: {},
 });
 
-export default main;
+export default searchUs;

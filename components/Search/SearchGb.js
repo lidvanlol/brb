@@ -6,23 +6,22 @@ import {
 	View,
 	FlatList,
 	Button,
-	TextInput,
 } from "react-native";
-import NewsCards from "./NewsCards";
-import Colors from "../constants/Colors";
-import Env from "../constants/Env";
+import NewsCards from "../NewsCard/NewsCards";
+import Colors from "../../constants/Colors";
+import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
-import { Appbar } from "react-native-paper";
+import { Appbar, TextInput } from "react-native-paper";
 
-const search = () => {
+const searchGb = () => {
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
 	const [searchValue, setSearchValue] = useState("");
-	const [searchResults, setSearchResults] = useState(null);
+	const [searchResults, setSearchResults] = useState([]);
 
 	const searchHandler = async () => {
 		try {
-			const search = `http://newsapi.org/v2/top-headlines?country=us&q=${searchValue}&apiKey=${Env.NEWS_API_KEY}`;
+			const search = `http://newsapi.org/v2/top-headlines?country=gb&q=${searchValue}&apiKey=${Env.NEWS_API_KEY}`;
 			const response = await fetch(search);
 			const responseJson = await response.json();
 			if (response.ok) {
@@ -58,7 +57,7 @@ const search = () => {
 						title="us"
 						style={styles.topBtn}
 						onPress={() => {
-							navigation.navigate("Searcg");
+							navigation.navigate("SearchUs");
 						}}
 					/>
 
@@ -66,20 +65,21 @@ const search = () => {
 						style={styles.topBtn}
 						title="gb"
 						onPress={() => {
-							navigation.navigate("mainGB");
+							navigation.navigate("SearchGb");
 						}}
 					></Button>
 				</View>
 			</Appbar>
 			<TextInput
 				placeholder="Search"
+				value={searchValue}
 				onChange={(e) => setSearchValue(e.target.value)}
 				onChangeText={searchHandler}
 				placeholderTextColor={"#888888"}
 				style={styles.search}
 			/>
 
-			<Text style={styles.title}>Search Top News In Us by Term</Text>
+			<Text style={styles.title}>Search Top News In Gb by Term</Text>
 
 			{searchResults ? (
 				<FlatList
@@ -151,4 +151,4 @@ const styles = StyleSheet.create({
 	topBtn: {},
 });
 
-export default search;
+export default searchGb;

@@ -7,9 +7,9 @@ import {
 	FlatList,
 	Button,
 } from "react-native";
-import NewsCards from "./NewsCards";
-import Colors from "../constants/Colors";
-import Env from "../constants/Env";
+import NewsCards from "../NewsCard/NewsCards";
+import Colors from "../../constants/Colors";
+import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
 
@@ -57,7 +57,7 @@ const mainGb = () => {
 						title="us"
 						onPress={() => {
 							/* 1. Navigate to the Details route with params */
-							navigation.navigate("main");
+							navigation.navigate("TopNewsUs");
 						}}
 					/>
 
@@ -65,7 +65,7 @@ const mainGb = () => {
 						title="gb"
 						onPress={() => {
 							/* 1. Navigate to the Details route with params */
-							navigation.navigate("mainGB");
+							navigation.navigate("TopNewsGb");
 						}}
 					></Button>
 				</View>
