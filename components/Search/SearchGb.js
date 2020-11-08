@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import {
-	StyleSheet,
+	
 	StatusBar,
 	Text,
 	View,
-    FlatList,
-    SafeAreaView,
-	Button,
+	FlatList,
+	SafeAreaView,
+	
+	TouchableOpacity,
 } from "react-native";
 import NewsCards from "../NewsCard/NewsCards";
 import Colors from "../../constants/Colors";
 import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar, TextInput } from "react-native-paper";
-
+import styles from './style'
 const searchGb = () => {
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
@@ -54,27 +55,26 @@ const searchGb = () => {
 				<Appbar.BackAction onPress={() => navigation.goBack()} />
 
 				<View style={styles.right}>
-					<Button
-						title="us"
-						style={styles.topBtn}
+					<TouchableOpacity
+						style={styles.lang}
 						onPress={() => {
 							navigation.navigate("SearchUs");
 						}}
-					/>
-
-					<Button
-						style={styles.topBtn}
-						title="gb"
+					>
+						<Text style={{ color: "#ffffff" }}>US</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.lang}
 						onPress={() => {
 							navigation.navigate("SearchGb");
 						}}
-					></Button>
+					>
+						<Text style={{ color: "#ffffff" }}>GB</Text>
+					</TouchableOpacity>
 				</View>
 			</Appbar>
 			<TextInput
 				placeholder="Search"
-				value={searchValue}
-				onChange={(e) => setSearchValue(e.target.value)}
 				onChangeText={searchHandler}
 				placeholderTextColor={"#888888"}
 				style={styles.search}
@@ -95,61 +95,5 @@ const searchGb = () => {
 	);
 };
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.primary,
-	},
-	title: {
-		fontSize: 24,
-		fontWeight: "bold",
-		color: "white",
-		textAlign: "center",
-		marginTop: 20,
-		marginBottom: 20,
-	},
-
-	errMsg: {
-		fontSize: 18,
-		justifyContent: "center",
-		alignItems: "center",
-		color: "white",
-	},
-	header: {
-		color: "white",
-		alignItems: "center",
-		fontWeight: "bold",
-		textAlign: "center",
-		marginTop: 20,
-		marginBottom: 20,
-		fontSize: 30,
-	},
-	search: {
-		width: "100%",
-		backgroundColor: "white",
-		height: 80,
-		padding: 10,
-		fontSize: 30,
-	},
-	appbar: {
-		display: "flex",
-		flexDirection: "row",
-	},
-
-	appbar: {
-		position: "relative",
-		flexDirection: "row",
-	},
-	right: {
-		position: "absolute",
-		right: 10,
-		flexDirection: "row",
-	},
-	rightButtons: {
-		alignSelf: "flex-end",
-		flex: 1,
-	},
-	topBtn: {},
-});
 
 export default searchGb;

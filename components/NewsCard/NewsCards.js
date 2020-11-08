@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, SafeAreaView,Text, View } from "react-native";
+import {
+	StyleSheet,
+	TouchableOpacity,
+	SafeAreaView,
+	Text,
+	View,
+} from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 

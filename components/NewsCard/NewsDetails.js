@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Image, View, Text, ScrollView,SafeAreaView } from "react-native";
+import {
+	StyleSheet,
+	Image,
+	View,
+	Text,
+	ScrollView,
+	SafeAreaView,
+} from "react-native";
 
 function NewsDetails({ route }) {
 	const { content, title, urlToImage } = route.params;

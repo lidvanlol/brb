@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import {
-	StyleSheet,
+	
 	StatusBar,
 	Text,
 	View,
 	FlatList,
+	TouchableOpacity,
 	SafeAreaView,
-	Button,
+	
 } from "react-native";
 import NewsCards from "../NewsCard/NewsCards";
-import Colors from "../../constants/Colors";
+
 import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
-
+import styles from "./style";
 const mainGb = () => {
 	const [newsData, setNewsData] = useState();
 	const [errorMessage, setErrorMessage] = useState();
@@ -49,26 +50,33 @@ const mainGb = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
+			<StatusBar
+				backgroundColor={Colors.primary}
+				barStyle="default"
+				
+			/>
 			<Appbar>
 				<Appbar.BackAction onPress={() => navigation.goBack()} />
 
 				<View style={styles.right}>
-					<Button
-						title="us"
+					<TouchableOpacity
+						style={styles.lang}
 						onPress={() => {
 							/* 1. Navigate to the Details route with params */
 							navigation.navigate("TopNewsUs");
 						}}
-					/>
-
-					<Button
-						title="gb"
+					>
+						<Text style={{ color: "#ffffff" }}>US</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.lang}
 						onPress={() => {
 							/* 1. Navigate to the Details route with params */
 							navigation.navigate("TopNewsGb");
 						}}
-					></Button>
+					>
+						<Text style={{ color: "#ffffff" }}>GB</Text>
+					</TouchableOpacity>
 				</View>
 			</Appbar>
 			<View>
@@ -87,44 +95,5 @@ const mainGb = () => {
 	);
 };
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.primary,
-	},
-	header: {
-		height: 50,
-		backgroundColor: Colors.primary,
-		alignItems: "center",
-	},
-	title: {
-		fontSize: 28,
-		color: "white",
-	},
-	errMsg: {
-		fontSize: 18,
-		justifyContent: "center",
-		alignItems: "center",
-		color: "white",
-	},
-	appbar: {
-		position: "relative",
-		flexDirection: "row",
-	},
-	right: {
-		position: "absolute",
-		right: 10,
-		flexDirection: "row",
-	},
-	header: {
-		color: "white",
-		alignItems: "center",
-		fontWeight: "bold",
-		textAlign: "center",
-		marginTop: 20,
-		marginBottom: 20,
-		fontSize: 30,
-	},
-});
 
 export default mainGb;
