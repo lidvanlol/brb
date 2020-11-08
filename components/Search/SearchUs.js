@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
-	
 	StatusBar,
 	SafeAreaView,
 	Text,
 	View,
 	FlatList,
 	TouchableOpacity,
-	
 } from "react-native";
 import NewsCards from "../NewsCard/NewsCards";
 import Colors from "../../constants/Colors";
@@ -75,7 +73,6 @@ const searchUs = () => {
 			</Appbar>
 			<TextInput
 				placeholder="Search"
-				value={searchValue}
 				onChange={(e) => setSearchValue(e.target.value)}
 				onChangeText={searchHandler}
 				placeholderTextColor={"#888888"}
@@ -96,6 +93,5 @@ const searchUs = () => {
 		</SafeAreaView>
 	);
 };
-
 
 export default searchUs;
