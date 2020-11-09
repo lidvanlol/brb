@@ -1,5 +1,5 @@
 const Env = {
-	NEWS_API_KEY: "9c08f081bb9b4c5791ababbafc4afafc",
+	NEWS_API_KEY: "7cb800a4bd7c4f839f4f22578953d964",
 };
 
 export default Env;

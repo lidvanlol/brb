@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {
-	
 	StatusBar,
 	Text,
 	View,
 	FlatList,
 	TouchableOpacity,
 	SafeAreaView,
-	
 } from "react-native";
 import NewsCards from "../NewsCard/NewsCards";
-
+import Colors from "../../constants/Colors";
 import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar } from "react-native-paper";
@@ -50,11 +48,7 @@ const mainGb = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<StatusBar
-				backgroundColor={Colors.primary}
-				barStyle="default"
-				
-			/>
+			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
 			<Appbar>
 				<Appbar.BackAction onPress={() => navigation.goBack()} />
 
@@ -94,6 +88,5 @@ const mainGb = () => {
 		</SafeAreaView>
 	);
 };
-
 
 export default mainGb;

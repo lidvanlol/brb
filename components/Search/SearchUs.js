@@ -36,15 +36,21 @@ const searchUs = () => {
 	useEffect(() => {
 		searchHandler();
 	}, []);
-
-	const renderItem = ({ item }) => (
+	const handleQueryChange = (text) => {
+		setSearchValue(text);
+		searchHandler(text);
+	};
+	const renderItem = ({ item, index }) => (
 		<NewsCards
 			title={item.title}
 			description={item.description}
 			urlToImage={item.urlToImage}
 			content={item.content}
+			key={index}
 		/>
 	);
+
+
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -73,10 +79,11 @@ const searchUs = () => {
 			</Appbar>
 			<TextInput
 				placeholder="Search"
-				onChange={(e) => setSearchValue(e.target.value)}
-				onChangeText={searchHandler}
+				onChangeText={handleQueryChange}
+				value={searchValue}
 				placeholderTextColor={"#888888"}
 				style={styles.search}
+				autoFocus
 			/>
 
 			<Text style={styles.title}>Search Top News In Us by Term</Text>
@@ -86,6 +93,7 @@ const searchUs = () => {
 					data={searchResults}
 					renderItem={renderItem}
 					keyExtractor={(item) => item.publishedAt}
+					
 				/>
 			) : (
 				errorMessage && <Text style={styles.errMsg}>Error: {errorMessage}</Text>

@@ -157,7 +157,7 @@ function CategoriesUs() {
 		<View style={styles.container}>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
 			<Appbar style={styles.appbar}>
-				<Appbar.BackAction onPress={() => navigation.goBack("main")} />
+				<Appbar.BackAction onPress={() => navigation.goBack()} />
 
 				<View style={styles.right}>
 					<TouchableOpacity

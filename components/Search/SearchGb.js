@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
-	
 	StatusBar,
+	SafeAreaView,
 	Text,
 	View,
 	FlatList,
-	SafeAreaView,
-	
 	TouchableOpacity,
 } from "react-native";
 import NewsCards from "../NewsCard/NewsCards";
@@ -14,8 +12,8 @@ import Colors from "../../constants/Colors";
 import Env from "../../constants/Env";
 import { useNavigation } from "@react-navigation/native";
 import { Appbar, TextInput } from "react-native-paper";
-import styles from './style'
-const searchGb = () => {
+import styles from "./style";
+const searchUs = () => {
 	const [errorMessage, setErrorMessage] = useState();
 	const navigation = useNavigation();
 	const [searchValue, setSearchValue] = useState("");
@@ -38,16 +36,21 @@ const searchGb = () => {
 	useEffect(() => {
 		searchHandler();
 	}, []);
-
-	const renderItem = ({ item }) => (
+	const handleQueryChange = (text) => {
+		setSearchValue(text);
+		searchHandler(text);
+	};
+	const renderItem = ({ item, index }) => (
 		<NewsCards
 			title={item.title}
 			description={item.description}
 			urlToImage={item.urlToImage}
 			content={item.content}
+			key={index}
 		/>
 	);
 
+	
 	return (
 		<SafeAreaView style={styles.container}>
 			<StatusBar backgroundColor={Colors.primary} barStyle="default" />
@@ -75,9 +78,11 @@ const searchGb = () => {
 			</Appbar>
 			<TextInput
 				placeholder="Search"
-				onChangeText={searchHandler}
+				onChangeText={handleQueryChange}
+				value={searchValue}
 				placeholderTextColor={"#888888"}
 				style={styles.search}
+				autoFocus
 			/>
 
 			<Text style={styles.title}>Search Top News In Gb by Term</Text>
@@ -87,6 +92,7 @@ const searchGb = () => {
 					data={searchResults}
 					renderItem={renderItem}
 					keyExtractor={(item) => item.publishedAt}
+					
 				/>
 			) : (
 				errorMessage && <Text style={styles.errMsg}>Error: {errorMessage}</Text>
@@ -95,5 +101,4 @@ const searchGb = () => {
 	);
 };
 
-
-export default searchGb;
+export default searchUs;

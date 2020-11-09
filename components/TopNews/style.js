@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: Colors.primary,
 	},
-	
+
 	title: {
 		fontSize: 28,
 		color: "white",
